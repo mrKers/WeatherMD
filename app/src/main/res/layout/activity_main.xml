@@ -86,9 +86,9 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                app:tint="@color/dividerColor"
                 tools:ignore="MissingConstraints"
-                tools:src="@drawable/outline_wb_sunny_24"
-                app:tint="@color/dividerColor" />
+                tools:src="@drawable/outline_wb_sunny_24" />
 
             <com.google.android.material.textview.MaterialTextView
                 style="@style/MainTextViewStyle"
@@ -359,4 +359,66 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/main_bottom_sheets"
+        style="?attr/bottomSheetStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:background="@drawable/bg_bottom_sheets"
+        android:elevation="8dp"
+        app:behavior_hideable="false"
+        app:behavior_peekHight="160dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+
+        <LinearLayout
+            android:id="@+id/main_design_bottom_sheet_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="16dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/bg_bottom_sheet_swyper"
+                android:orientation="horizontal" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_hourly_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:overScrollMode="never"
+                tools:layout_height="80dp" />
+
+            <LinearLayout
+                style="@style/DividerStyle"
+                android:layout_width="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_daily_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                tools:layout_height="16dp" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
