@@ -84,6 +84,7 @@
 
 
             <ImageView
+                android:id="@+id/main_weather_condition_icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 app:tint="@color/dividerColor"
@@ -91,6 +92,7 @@
                 tools:src="@drawable/outline_wb_sunny_24" />
 
             <com.google.android.material.textview.MaterialTextView
+               android:id="@+id/main_weather_condition_description"
                 style="@style/MainTextViewStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -139,6 +141,7 @@
                     android:textSize="12sp" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/main_temp_min_tv"
                     style="@style/MainTextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -170,6 +173,7 @@
                     android:textSize="12sp" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/main_temp_max_tv"
                     style="@style/MainTextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -202,6 +206,7 @@
                     android:textSize="12sp" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/main_temp_sr_tv"
                     style="@style/MainTextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -236,6 +241,7 @@
                     app:tint="@color/dividerColor" />
 
                 <com.google.android.material.textview.MaterialTextView
+                   android:id="@+id/main_pressure_mu_tv"
                     style="@style/MainTextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -261,6 +267,7 @@
                     app:tint="@color/dividerColor" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/main_humidity_mu_tv"
                     style="@style/MainTextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -284,6 +291,7 @@
                     app:tint="@color/dividerColor" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/main_wind_speed_mu_tv"
                     style="@style/MainTextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -318,6 +326,7 @@
                     app:tint="@color/dividerColor" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/main_sunrise_mu_tv"
                     style="@style/MainTextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -342,6 +351,7 @@
                     app:tint="@color/dividerColor" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/main_sunset_mu_tv"
                     style="@style/MainTextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -368,7 +378,6 @@
         android:background="@drawable/bg_bottom_sheets"
         android:elevation="8dp"
         app:behavior_hideable="false"
-        app:behavior_peekHight="160dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
 
@@ -417,4 +426,5 @@
 
 
 
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
