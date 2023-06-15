@@ -5,6 +5,10 @@
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -13,7 +17,7 @@
             style="@style/AdditionalWeatherInformationStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="20 May"
+            android:text="20 Tuesday"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,21 +34,64 @@
             app:tint="@color/dividerColor" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_daily_pop_tv"
             style="@style/AdditionalWeatherInformationStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             app:layout_constraintStart_toEndOf="@id/item_daily_weather_condition_icon"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="25 %"/>
         
         <com.google.android.material.textview.MaterialTextView
-            android:layout_width=""
-            android:layout_height=""
+            android:id="@+id/item_daily_min_temp_tv"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:includeFontPadding="false"
+            android:textSize="17sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="19\u00b0"/>
+        
+        <LinearLayout
+            android:id="@+id/item_daily_divider"
+            style="@style/DividerStyle"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="@id/item_daily_min_temp_tv"
+            app:layout_constraintBottom_toBottomOf="@id/item_daily_min_temp_tv"
+            app:layout_constraintEnd_toStartOf="@id/item_daily_min_temp_tv"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_daily_max_temp_tv"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp"
+            android:gravity="end"
+            android:includeFontPadding="false"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/item_daily_divider"
+            android:text="24\u00b0"/>
 
 
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
