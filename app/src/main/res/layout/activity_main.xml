@@ -377,6 +377,7 @@
         android:background="@drawable/bg_bottom_sheets"
         android:elevation="8dp"
         app:behavior_hideable="false"
+        app:behavior_peekHeight = "150dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
 

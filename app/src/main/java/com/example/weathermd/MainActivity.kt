@@ -2,6 +2,9 @@ package com.example.weathermd
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.weathermd.view.adapters.MainDailyListAdapter
+import com.example.weathermd.view.adapters.MainHourlyListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -13,7 +16,16 @@ class MainActivity : AppCompatActivity() {
 
         initViews()
 
+        main_hourly_list.apply {
+            adapter = MainHourlyListAdapter()
+            layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+            setHasFixedSize(true)
 
+        }
+
+        main_daily_list.adapter = MainDailyListAdapter()
+        main_daily_list.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false)
+        main_daily_list.setHasFixedSize(true)
     }
 
     private fun initViews(){
