@@ -6,10 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weathermd.R
 
-class MainDailyListAdapter : RecyclerView.Adapter <MainDailyListAdapter.DailyViewHolder>(){
+class MainDailyListAdapter : RecyclerView.Adapter<MainDailyListAdapter.DailyViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainDailyListAdapter.DailyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_main_daily,parent,false)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): MainDailyListAdapter.DailyViewHolder {
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_main_daily, parent, false)
         return DailyViewHolder(view)
     }
 
@@ -20,7 +24,7 @@ class MainDailyListAdapter : RecyclerView.Adapter <MainDailyListAdapter.DailyVie
     override fun getItemCount() = 8
 
 
-    inner class DailyViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    inner class DailyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     }
 

@@ -18,17 +18,18 @@ class MainActivity : AppCompatActivity() {
 
         main_hourly_list.apply {
             adapter = MainHourlyListAdapter()
-            layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
 
         }
 
         main_daily_list.adapter = MainDailyListAdapter()
-        main_daily_list.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false)
+        main_daily_list.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         main_daily_list.setHasFixedSize(true)
     }
 
-    private fun initViews(){
+    private fun initViews() {
         main_city_name_tv.text = "Moskow"
         main_data_tv.text = "8 Jule"
         main_weather_condition_icon.setImageResource(R.drawable.outline_wb_sunny_24)
