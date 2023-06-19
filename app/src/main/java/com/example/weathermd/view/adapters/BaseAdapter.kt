@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class BaseAdapter<D> : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
 
 
-    //Тут будут данные, которые приходят с сервера
     private val _mData by lazy { mutableListOf<D>() }
     protected val mData: List<D> = _mData
 
@@ -14,7 +13,7 @@ abstract class BaseAdapter<D> : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>
         holder.bindView(position)
     }
 
-    override fun getItemCount() = _mData.size
+    override fun getItemCount() = 30 //_mData.size
 
     fun updateData (data: List<D>){
         if (_mData.isEmpty() && (data.isNotEmpty())){
@@ -22,9 +21,14 @@ abstract class BaseAdapter<D> : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>
         }else{
             _mData.clear()
             _mData.addAll(data)
-            //25:30
+
         }
+        notifyDataSetChanged()
+
     }
 
-    abstract class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view){}
+    abstract class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view){
+
+        abstract fun bindView(position: Int)
+    }
 }
