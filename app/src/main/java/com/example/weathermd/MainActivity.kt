@@ -1,18 +1,25 @@
 package com.example.weathermd
 
+import android.location.Location
+import android.location.LocationRequest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weathermd.view.adapters.MainDailyListAdapter
 import com.example.weathermd.view.adapters.MainHourlyListAdapter
+import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+
+    private val geoService by lazy { LocationServices.getFusedLocationProviderClient(this) }
+    private val locationRequest by lazy { initLocationRequest() }
+    private lateinit var mLocation: Location
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        //dasmdknaksldna
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         initViews()
 
@@ -22,11 +29,11 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
 
         }
-
-        main_daily_list.adapter = MainDailyListAdapter()
-        main_daily_list.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        main_daily_list.setHasFixedSize(true)
+        main_hourly_list.apply {
+            adapter = MainDailyListAdapter()
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            main_daily_list.setHasFixedSize(true)
+        }
     }
 
     private fun initViews() {
@@ -46,5 +53,16 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    // ---------location code ---------------
+     fun initLocationRequest(): LocationRequest {
+        val request = LocationRequest.create {}
+        return request.apply {
+            iterval =10000
+            fasttestInterval = 5000
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+
+        }
+    }
 
 }
+    // ---------location code ---------------

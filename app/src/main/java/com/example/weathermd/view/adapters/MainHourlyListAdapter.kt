@@ -5,8 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import butterknife.BindView
-import butterknife.ButterKnife
+
 import com.example.weathermd.R
 import com.example.weathermd.bisiness.model.HourlyWeatherModel
 import com.example.weathermd.databinding.ItemMainDailyBinding
