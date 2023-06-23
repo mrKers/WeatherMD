@@ -1,13 +1,14 @@
 package com.example.weathermd
 
+
 import android.location.Location
-import android.location.LocationRequest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weathermd.view.adapters.MainDailyListAdapter
 import com.example.weathermd.view.adapters.MainHourlyListAdapter
 import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_main.*
@@ -57,10 +58,10 @@ class MainActivity : AppCompatActivity() {
 
     // ---------location code ---------------
     fun initLocationRequest(): LocationRequest {
-        val request = LocationRequest.create {}
+        val request = LocationRequest.create()
         return request.apply {
-            iterval = 10000
-            fasttestInterval = 5000
+            interval = 10000
+            fastestInterval = 5000
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
 
         }
@@ -72,7 +73,6 @@ class MainActivity : AppCompatActivity() {
                 mLocation = location
             }
         }
-
     }
     // ---------location code ---------------
 }
