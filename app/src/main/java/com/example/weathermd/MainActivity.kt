@@ -7,6 +7,8 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weathermd.view.adapters.MainDailyListAdapter
 import com.example.weathermd.view.adapters.MainHourlyListAdapter
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -54,15 +56,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     // ---------location code ---------------
-     fun initLocationRequest(): LocationRequest {
+    fun initLocationRequest(): LocationRequest {
         val request = LocationRequest.create {}
         return request.apply {
-            iterval =10000
+            iterval = 10000
             fasttestInterval = 5000
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
 
         }
     }
 
-}
+    private val geoCallback = object : LocationCallback() {
+        override fun onLocationResult(geo: LocationResult) {
+            for (location in geo.locations) {
+                mLocation = location
+            }
+        }
+
+    }
     // ---------location code ---------------
+}
