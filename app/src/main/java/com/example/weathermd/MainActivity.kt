@@ -1,9 +1,16 @@
 package com.example.weathermd
 
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.pm.PackageManager
 import android.location.Location
+import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weathermd.view.adapters.MainDailyListAdapter
 import com.example.weathermd.view.adapters.MainHourlyListAdapter
@@ -11,7 +18,12 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_main.*
+
+
+const val GEO_LOCATION_REQUEST_COD_SUCCESS = 1
+const val TAG = "GEO TEST"
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,9 +32,12 @@ class MainActivity : AppCompatActivity() {
     private val locationRequest by lazy { initLocationRequest() }
     private lateinit var mLocation: Location
 
+   @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        checkPermission()
 
         initViews()
 
@@ -37,7 +52,11 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             main_daily_list.setHasFixedSize(true)
         }
+
+
+        geoService.requestLocationUpdates(locationRequest, geoCallback, null)
     }
+
 
     private fun initViews() {
         main_city_name_tv.text = "Moskow"
@@ -69,10 +88,52 @@ class MainActivity : AppCompatActivity() {
 
     private val geoCallback = object : LocationCallback() {
         override fun onLocationResult(geo: LocationResult) {
+            Log.d(TAG,"onLocationResult: ${geo.locations.size}")
             for (location in geo.locations) {
                 mLocation = location
+                Log.d(TAG, "onLocationResult: lat: ${location.latitude} ; lon: ${location.longitude}")
             }
+
         }
     }
-    // ---------location code ---------------
+
+    @SuppressLint("MissingSuperCall")
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        Log.d(TAG, "onRequestPermissionResult: $requestCode")
+
+    }
+
+    private fun checkPermission() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Нам нужны гео данные")
+                .setMessage("Пожалуйста, разрешите доступ к геоданным, для продолжения работы приложения")
+                .setPositiveButton("Ok") { _, _ ->
+                    ActivityCompat.requestPermissions(
+                        this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                        GEO_LOCATION_REQUEST_COD_SUCCESS
+                    )
+                    ActivityCompat.requestPermissions(
+                        this, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
+                        GEO_LOCATION_REQUEST_COD_SUCCESS
+                    )
+
+                }
+                .setNegativeButton("Cancel") {dialog,_ -> dialog.dismiss()}
+                .create()
+                .show()
+        }
+    }
 }
