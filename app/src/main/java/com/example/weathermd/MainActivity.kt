@@ -29,7 +29,7 @@ import moxy.MvpActivity
 import moxy.ktx.moxyPresenter
 
 
-const val GEO_LOCATION_REQUEST_COD_SUCCESS = 1
+
 const val TAG = "GEO TEST"
 
 class MainActivity : MvpActivity(), MainView {
@@ -46,9 +46,7 @@ class MainActivity : MvpActivity(), MainView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        checkPermission()
-
-        initViews()
+       initViews()
 
         main_hourly_list.apply {
             adapter = MainHourlyListAdapter()
@@ -152,45 +150,6 @@ class MainActivity : MvpActivity(), MainView {
         }
     }
 
-    @SuppressLint("MissingSuperCall")
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        Log.d(TAG, "onRequestPermissionResult: $requestCode")
-
-    }
-
-    private fun checkPermission() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            MaterialAlertDialogBuilder(this)
-                .setTitle("Нам нужны гео данные")
-                .setMessage("Пожалуйста, разрешите доступ к геоданным, для продолжения работы приложения")
-                .setPositiveButton("Ok") { _, _ ->
-                    ActivityCompat.requestPermissions(
-                        this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                        GEO_LOCATION_REQUEST_COD_SUCCESS
-                    )
-                    ActivityCompat.requestPermissions(
-                        this, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
-                        GEO_LOCATION_REQUEST_COD_SUCCESS
-                    )
-
-                }
-                .setNegativeButton("Cancel") {dialog,_ -> dialog.dismiss()}
-                .create()
-                .show()
-        }
-    }
 
 
 }
